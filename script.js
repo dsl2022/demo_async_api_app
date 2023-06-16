@@ -1,4 +1,5 @@
 const BASE_URL = "https://fsa-puppy-bowl.herokuapp.com"
+let isHidden = false
 const COHORT_NAME = "2302-acc-pt-web-pt-e"
 const list = document.getElementById("list")
 const showButton  = document.getElementById("show")
@@ -29,14 +30,22 @@ async function render(){
             li.append(title)
             li.append(p)
             list.append(li)
-            console.log({name, breed,imageUrl})
         })
 }
 
 
-showButton.addEventListener("click",()=>{
-    render()
-})
+showButton.addEventListener("click", () => {
+    isHidden = !isHidden;
+    if (isHidden) {
+      showButton.textContent = "Show Images";
+      list.style.display = "none"; 
+    } else {
+      showButton.textContent = "Hide";
+      list.style.display = "block";
+      render();
+    }
+  });
+  
 
 
 
